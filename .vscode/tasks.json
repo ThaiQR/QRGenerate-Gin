@@ -1,0 +1,40 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "pre_comment",
+            "command": "echo",
+            "args": [
+                "generate swagger"
+            ],
+            "type": "shell"
+        },
+        {
+            "label": "post_comment",
+            "command": "echo",
+            "args": [
+                "end generate swagger"
+            ],
+            "type": "shell"
+        },
+        {
+            "label": "swaggen",
+            // "command": "dir",
+            "command": "swag init --parseDependency --parseInternal --parseDepth 1 -g .\\Core\\Routes.go",
+            "type": "shell"
+        },
+        { // Pre Debug
+            "label": "preDebug",
+            "dependsOn":[
+                "pre_comment",
+                "swaggen",
+            ]
+        },
+        { // Post Debug
+            "label": "postDebug",
+            "dependsOn":[
+                "post_comment",
+            ]
+        },
+    ]
+}

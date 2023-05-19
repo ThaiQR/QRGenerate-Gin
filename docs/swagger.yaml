@@ -1,0 +1,49 @@
+definitions:
+  models.QRGenerateRequest:
+    properties:
+      amount:
+        type: number
+      reference1:
+        type: string
+      reference2:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /:
+    get:
+      consumes:
+      - application/json
+      description: Health checking for the service
+      operationId: HealthCheckHandler
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Health Check
+  /qrgen:
+    post:
+      consumes:
+      - application/json
+      description: For Generate TQR
+      operationId: TQRGen
+      parameters:
+      - description: Body for Generate TQR
+        in: body
+        name: models.QRGenerateRequest
+        required: true
+        schema:
+          $ref: '#/definitions/models.QRGenerateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: TQR generate
+swagger: "2.0"
