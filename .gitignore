@@ -3,6 +3,6 @@
 
 app
 
-.gitlab-ci.yml
-Dockerfile
-.dockerignore
+# .gitlab-ci.yml
+# Dockerfile
+# .dockerignore
