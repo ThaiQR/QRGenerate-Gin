@@ -1,3 +1,8 @@
 .dist/
-go.old.mod
-config.json
+.vscode/
+
+app
+
+.gitlab-ci.yml
+Dockerfile
+.dockerignore
