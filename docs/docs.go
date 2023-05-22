@@ -37,7 +37,11 @@ const docTemplate = `{
                 }
             }
         },
+<<<<<<< HEAD
         "/merchant-billpayment-qr": {
+=======
+        "/qrgen": {
+>>>>>>> e62476a (QRGen wiht Golang)
             "post": {
                 "description": "For Generate TQR",
                 "consumes": [
@@ -46,6 +50,7 @@ const docTemplate = `{
                 "produces": [
                     "application/json"
                 ],
+<<<<<<< HEAD
                 "summary": "TQR Billpayment generate",
                 "operationId": "TQR Merchant Billpayment",
                 "parameters": [
@@ -88,6 +93,18 @@ const docTemplate = `{
                         "required": true,
                         "schema": {
                             "$ref": "#/definitions/request.MerchantPromptpayRequest"
+=======
+                "summary": "TQR generate",
+                "operationId": "TQRGen",
+                "parameters": [
+                    {
+                        "description": "Body for Generate TQR",
+                        "name": "models.QRGenerateRequest",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.QRGenerateRequest"
+>>>>>>> e62476a (QRGen wiht Golang)
                         }
                     }
                 ],
@@ -103,7 +120,11 @@ const docTemplate = `{
         }
     },
     "definitions": {
+<<<<<<< HEAD
         "request.MerchantBillpaymentRequest": {
+=======
+        "models.QRGenerateRequest": {
+>>>>>>> e62476a (QRGen wiht Golang)
             "type": "object",
             "properties": {
                 "amount": {
@@ -116,6 +137,7 @@ const docTemplate = `{
                     "type": "string"
                 }
             }
+<<<<<<< HEAD
         },
         "request.MerchantPromptpayRequest": {
             "type": "object",
@@ -130,6 +152,8 @@ const docTemplate = `{
                     "type": "string"
                 }
             }
+=======
+>>>>>>> e62476a (QRGen wiht Golang)
         }
     }
 }`

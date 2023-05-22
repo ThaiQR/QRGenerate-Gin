@@ -1,5 +1,9 @@
 definitions:
+<<<<<<< HEAD
   request.MerchantBillpaymentRequest:
+=======
+  models.QRGenerateRequest:
+>>>>>>> e62476a (QRGen wiht Golang)
     properties:
       amount:
         type: number
@@ -8,6 +12,7 @@ definitions:
       reference2:
         type: string
     type: object
+<<<<<<< HEAD
   request.MerchantPromptpayRequest:
     properties:
       amount:
@@ -17,6 +22,8 @@ definitions:
       recieveId:
         type: string
     type: object
+=======
+>>>>>>> e62476a (QRGen wiht Golang)
 info:
   contact: {}
 paths:
@@ -34,11 +41,16 @@ paths:
           schema:
             type: string
       summary: Health Check
+<<<<<<< HEAD
   /merchant-billpayment-qr:
+=======
+  /qrgen:
+>>>>>>> e62476a (QRGen wiht Golang)
     post:
       consumes:
       - application/json
       description: For Generate TQR
+<<<<<<< HEAD
       operationId: TQR Merchant Billpayment
       parameters:
       - description: Body for Generate TQR
@@ -47,6 +59,16 @@ paths:
         required: true
         schema:
           $ref: '#/definitions/request.MerchantBillpaymentRequest'
+=======
+      operationId: TQRGen
+      parameters:
+      - description: Body for Generate TQR
+        in: body
+        name: models.QRGenerateRequest
+        required: true
+        schema:
+          $ref: '#/definitions/models.QRGenerateRequest'
+>>>>>>> e62476a (QRGen wiht Golang)
       produces:
       - application/json
       responses:
@@ -54,6 +76,7 @@ paths:
           description: OK
           schema:
             type: string
+<<<<<<< HEAD
       summary: TQR Billpayment generate
   /merchant-promptpay-qr:
     post:
@@ -76,4 +99,7 @@ paths:
           schema:
             type: string
       summary: TQR Promptpay generate
+=======
+      summary: TQR generate
+>>>>>>> e62476a (QRGen wiht Golang)
 swagger: "2.0"
