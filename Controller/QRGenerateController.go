@@ -30,18 +30,6 @@ func (qr *QRGenerateController) GetMerchantBillpaymentQR(c *gin.Context) {
 	}
 
 	result := qr.QRService.QRMerchantBillpaymentGenerate(&value)
-	// if err != "" {
-	// 	c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to generate QR"})
-	// 	return
-	// }
-
-	// valueStr, err := json.Marshal(value)
-	// resultStr, err := json.Marshal(result)
-	// if err != nil {
-	// 	log.Fatal(err)
-	// } else {
-	// 	log.Fatal(string(valueStr))
-	// }
 
 	c.JSON(http.StatusOK, gin.H{
 		"status":   "ok",
