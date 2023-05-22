@@ -1,4 +1,4 @@
-package models
+package response
 
 type QRGenerateResponse struct {
 	QrText   string `json:"qr_text"`

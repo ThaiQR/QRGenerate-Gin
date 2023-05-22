@@ -1,8 +1,8 @@
 package core
 
 import (
-	controller "BankGW-Gin/Controller"
-	services "BankGW-Gin/Services"
+	controller "github.com/ThaiQR/QRGenerate-Gin/Controller"
+	services "github.com/ThaiQR/QRGenerate-Gin/Services"
 
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
@@ -10,17 +10,19 @@ import (
 )
 
 func Router() *gin.Engine {
-	r := gin.Default()
-	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
-
-	r.GET("/", controller.Test)
 
 	qrService := &services.QRService{}
 	qrGenerateController := &controller.QRGenerateController{
 		QRService: qrService,
 	}
 
-	r.POST("/qrgen", qrGenerateController.GetQR)
+	r := gin.Default()
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+
+	r.GET("/", controller.Test)
+
+	r.POST("/merchant-billpayment-qr", qrGenerateController.GetMerchantBillpaymentQR)
+	r.POST("/merchant-promptpay-qr", qrGenerateController.GetMerchantPromptpayQR)
 
 	r.Use(gin.Logger())
 

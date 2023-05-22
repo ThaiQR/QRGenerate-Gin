@@ -1,11 +1,20 @@
 definitions:
-  models.QRGenerateRequest:
+  request.MerchantBillpaymentRequest:
     properties:
       amount:
         type: number
       reference1:
         type: string
       reference2:
+        type: string
+    type: object
+  request.MerchantPromptpayRequest:
+    properties:
+      amount:
+        type: number
+      onetime:
+        type: boolean
+      recieveId:
         type: string
     type: object
 info:
@@ -25,19 +34,19 @@ paths:
           schema:
             type: string
       summary: Health Check
-  /qrgen:
+  /merchant-billpayment-qr:
     post:
       consumes:
       - application/json
       description: For Generate TQR
-      operationId: TQRGen
+      operationId: TQR Merchant Billpayment
       parameters:
       - description: Body for Generate TQR
         in: body
-        name: models.QRGenerateRequest
+        name: request.MerchantBillpaymentRequest
         required: true
         schema:
-          $ref: '#/definitions/models.QRGenerateRequest'
+          $ref: '#/definitions/request.MerchantBillpaymentRequest'
       produces:
       - application/json
       responses:
@@ -45,5 +54,26 @@ paths:
           description: OK
           schema:
             type: string
-      summary: TQR generate
+      summary: TQR Billpayment generate
+  /merchant-promptpay-qr:
+    post:
+      consumes:
+      - application/json
+      description: For Generate TQR
+      operationId: TQR Promptpay Promptpay
+      parameters:
+      - description: Body for Generate TQR
+        in: body
+        name: request.MerchantPromptpayRequest
+        required: true
+        schema:
+          $ref: '#/definitions/request.MerchantPromptpayRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: TQR Promptpay generate
 swagger: "2.0"

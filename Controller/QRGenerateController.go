@@ -1,9 +1,10 @@
 package controller
 
 import (
-	models "BankGW-Gin/Models"
-	services "BankGW-Gin/Services"
 	"net/http"
+
+	request "github.com/ThaiQR/QRGenerate-Gin/Model/Request"
+	services "github.com/ThaiQR/QRGenerate-Gin/Services"
 
 	"github.com/gin-gonic/gin"
 )
@@ -12,23 +13,23 @@ type QRGenerateController struct {
 	QRService *services.QRService
 }
 
-// @summary TQR generate
+// @summary TQR Billpayment generate
 // @description For Generate TQR
-// @id TQRGen
+// @id TQR Merchant Billpayment
 // @accept json
 // @produce json
-// @Param models.QRGenerateRequest body models.QRGenerateRequest true "Body for Generate TQR"
+// @Param request.MerchantBillpaymentRequest body request.MerchantBillpaymentRequest true "Body for Generate TQR"
 // @Success 200 {string} string "OK"
-// @router /qrgen [post]
-func (qr *QRGenerateController) GetQR(c *gin.Context) {
-	var value models.QRGenerateRequest
+// @router /merchant-billpayment-qr [post]
+func (qr *QRGenerateController) GetMerchantBillpaymentQR(c *gin.Context) {
+	var value request.MerchantBillpaymentRequest
 
 	if err := c.ShouldBindJSON(&value); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	result := qr.QRService.QRGenerate(&value)
+	result := qr.QRService.QRMerchantBillpaymentGenerate(&value)
 	// if err != "" {
 	// 	c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to generate QR"})
 	// 	return
@@ -41,6 +42,30 @@ func (qr *QRGenerateController) GetQR(c *gin.Context) {
 	// } else {
 	// 	log.Fatal(string(valueStr))
 	// }
+
+	c.JSON(http.StatusOK, gin.H{
+		"status":   "ok",
+		"response": result,
+	})
+}
+
+// @summary TQR Promptpay generate
+// @description For Generate TQR
+// @id TQR Promptpay Promptpay
+// @accept json
+// @produce json
+// @Param request.MerchantPromptpayRequest body request.MerchantPromptpayRequest true "Body for Generate TQR"
+// @Success 200 {string} string "OK"
+// @router /merchant-promptpay-qr [post]
+func (qr *QRGenerateController) GetMerchantPromptpayQR(c *gin.Context) {
+	var value request.MerchantPromptpayRequest
+
+	if err := c.ShouldBindJSON(&value); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	result := qr.QRService.QRMerchantPromptpayGenerate(&value)
 
 	c.JSON(http.StatusOK, gin.H{
 		"status":   "ok",

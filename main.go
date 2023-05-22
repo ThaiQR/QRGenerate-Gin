@@ -1,9 +1,9 @@
 package main
 
 import (
-	core "BankGW-Gin/Core"
+	core "github.com/ThaiQR/QRGenerate-Gin/Core"
 
-	_ "BankGW-Gin/docs"
+	_ "github.com/ThaiQR/QRGenerate-Gin/docs"
 
 	"github.com/spf13/viper"
 )

@@ -37,7 +37,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/qrgen": {
+        "/merchant-billpayment-qr": {
             "post": {
                 "description": "For Generate TQR",
                 "consumes": [
@@ -46,16 +46,48 @@ const docTemplate = `{
                 "produces": [
                     "application/json"
                 ],
-                "summary": "TQR generate",
-                "operationId": "TQRGen",
+                "summary": "TQR Billpayment generate",
+                "operationId": "TQR Merchant Billpayment",
                 "parameters": [
                     {
                         "description": "Body for Generate TQR",
-                        "name": "models.QRGenerateRequest",
+                        "name": "request.MerchantBillpaymentRequest",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.QRGenerateRequest"
+                            "$ref": "#/definitions/request.MerchantBillpaymentRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/merchant-promptpay-qr": {
+            "post": {
+                "description": "For Generate TQR",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "TQR Promptpay generate",
+                "operationId": "TQR Promptpay Promptpay",
+                "parameters": [
+                    {
+                        "description": "Body for Generate TQR",
+                        "name": "request.MerchantPromptpayRequest",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.MerchantPromptpayRequest"
                         }
                     }
                 ],
@@ -71,7 +103,7 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "models.QRGenerateRequest": {
+        "request.MerchantBillpaymentRequest": {
             "type": "object",
             "properties": {
                 "amount": {
@@ -81,6 +113,20 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "reference2": {
+                    "type": "string"
+                }
+            }
+        },
+        "request.MerchantPromptpayRequest": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "number"
+                },
+                "onetime": {
+                    "type": "boolean"
+                },
+                "recieveId": {
                     "type": "string"
                 }
             }

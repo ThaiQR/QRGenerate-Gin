@@ -1,6 +1,6 @@
-package data
+package model
 
-type QRGenerateData struct {
+type MerchantBillpaymentModel struct {
 	PFI          string
 	PIM          string
 	AID          string
@@ -16,10 +16,10 @@ type QRGenerateData struct {
 	CRC          string
 }
 
-func (q *QRGenerateData) SetValues(billerID, reference1, reference2, amount, merchantName string) {
+func (q *MerchantBillpaymentModel) SetValues(billerID, reference1, reference2, amount, merchantName string) {
 	q.PFI = "01"
 	q.PIM = "12"
-	q.AID = "A000000677010112" // Merchant TQR
+	q.AID = "A000000677010112" // Bill Payment for Domestic Merchant
 	q.BillerID = billerID
 	q.Reference1 = reference1
 	q.Reference2 = reference2
