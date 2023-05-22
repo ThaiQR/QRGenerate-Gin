@@ -1,2 +1,3 @@
 .dist/
 go.old.mod
+config.json
