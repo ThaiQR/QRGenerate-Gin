@@ -1,0 +1,55 @@
+# Use the latest 2.1 version of CircleCI pipeline process engine.
+# See: https://circleci.com/docs/2.0/configuration-reference
+version: 2.1
+
+parameters:
+  GHA_Event:
+    type: string
+    default: ""
+  GHA_Actor:
+    type: string
+    default: ""
+  GHA_Action:
+    type: string
+    default: ""
+  GHA_Meta:
+    type: string
+    default: ""
+
+orbs:
+  # The Node.js orb contains a set of prepackaged CircleCI configuration you can utilize
+  # Orbs reduce the amount of configuration required for common tasks.
+  # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/node
+  # node: circleci/node@4.7
+  docker: circleci/docker@1.7.0
+
+jobs:
+  docker-build-push:
+    docker:
+      - image: docker:20.10.9
+    environment:
+      IMAGE_TAG: $GHCR_REGISTER_URL/$DOCKER_IMAGE_NAME:DOCKER_IMAGE_TAG
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build Docker Image
+          command: docker build -t $IMAGE_TAG . 
+      - run:
+          name: Docker Login to GHCR
+          command: echo $GHCR_REGISTER_PASSWORD | docker login -u $GHCR_REGISTER_USERNAME --password-stdin $GHCR_REGISTER_URL
+      # - run:
+      #     name: Tag Image
+      #     command: docker tag $DOCKER_IMAGE_TAG
+      - run:
+          name: Push Image
+          command: docker push $IMAGE_TAG
+
+workflows:
+  docker-workflow:
+    # when: <<pipeline.parameters.GHA_Action>>
+    jobs:
+      - docker-build-push:
+          filters:
+            branches:
+              only: main
