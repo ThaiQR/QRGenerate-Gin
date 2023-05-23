@@ -1,7 +1,7 @@
 package request
 
 type MerchantPromptpayRequest struct {
-	RecieveID string  `json:"recieveId"`
+	ReceiveID string  `json:"receiveId"`
 	Amount    float64 `json:"amount"`
 	Onetime   bool    `json:"onetime"`
 }

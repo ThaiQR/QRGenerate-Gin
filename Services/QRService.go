@@ -28,7 +28,7 @@ func (s *QRService) QRMerchantBillpaymentGenerate(value *request.MerchantBillpay
 }
 
 func (s *QRService) QRMerchantPromptpayGenerate(value *request.MerchantPromptpayRequest) *response.QRGenerateResponse {
-	qrResult := thaiqr.MerchantPromptpayQRGenerate(value.RecieveID, strconv.FormatFloat(value.Amount, 'f', 2, 64), value.Onetime)
+	qrResult := thaiqr.MerchantPromptpayQRGenerate(value.ReceiveID, strconv.FormatFloat(value.Amount, 'f', 2, 64), value.Onetime)
 
 	response := &response.QRGenerateResponse{
 		QrText:   qrResult,

@@ -4,7 +4,7 @@ type CustomerPromptpayModel struct {
 	PFI          string
 	PIM          string
 	AID          string
-	RecieveID    string
+	ReceiveID    string
 	MerchantCode string
 	Currency     string
 	Amount       string
@@ -14,7 +14,7 @@ type CustomerPromptpayModel struct {
 	CRC          string
 }
 
-func (m *CustomerPromptpayModel) SetValues(recieveID, amount string, onetime bool) {
+func (m *CustomerPromptpayModel) SetValues(receiveID, amount string, onetime bool) {
 	if onetime {
 		m.PIM = "12"
 	} else {
@@ -24,7 +24,7 @@ func (m *CustomerPromptpayModel) SetValues(recieveID, amount string, onetime boo
 	m.PFI = "01"
 	// m.PIM = pim
 	m.AID = "A000000677010114" // Promptpay for Merchant
-	m.RecieveID = recieveID    // mobile:13, nid/Taxid: 13, EwalletId: 15, BankAcc: up to 43 (BOTcode 3 digits + account no.)
+	m.ReceiveID = receiveID    // mobile:13, nid/Taxid: 13, EwalletId: 15, BankAcc: up to 43 (BOTcode 3 digits + account no.)
 	m.MerchantCode = ""        // Can be null
 	m.Currency = "764"         // THB
 	m.Amount = amount
