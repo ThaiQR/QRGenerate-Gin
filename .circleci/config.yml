@@ -27,14 +27,14 @@ jobs:
   docker-build-push:
     docker:
       - image: docker:20.10.9
-    environment:
-      IMAGE_TAG: "$GHCR_REGISTER_URL/$GHCR_NAMESPACE/$DOCKER_IMAGE_NAME:DOCKER_IMAGE_TAG"
+    # environment:
+    #   IMAGE_TAG: $GHCR_REGISTER_URL/$GHCR_NAMESPACE/$DOCKER_IMAGE_NAME:DOCKER_IMAGE_TAG
     steps:
       - checkout
       - setup_remote_docker
       - run:
           name: Build Docker Image
-          command: docker build -t $IMAGE_TAG . 
+          command: docker build -t $GHCR_REGISTER_URL/$GHCR_NAMESPACE/$DOCKER_IMAGE_NAME:DOCKER_IMAGE_TAG . 
       - run:
           name: Docker Login to GHCR
           command: echo $GHCR_REGISTER_PASSWORD | docker login -u $GHCR_REGISTER_USERNAME --password-stdin $GHCR_REGISTER_URL
@@ -43,7 +43,7 @@ jobs:
       #     command: docker tag $DOCKER_IMAGE_TAG
       - run:
           name: Push Image
-          command: docker push $IMAGE_TAG
+          command: docker push $GHCR_REGISTER_URL/$GHCR_NAMESPACE/$DOCKER_IMAGE_NAME:DOCKER_IMAGE_TAG
 
 workflows:
   docker-workflow:
