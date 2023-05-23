@@ -28,7 +28,7 @@ jobs:
     docker:
       - image: docker:20.10.9
     environment:
-      IMAGE_TAG: $GHCR_REGISTER_URL/$DOCKER_IMAGE_NAME:DOCKER_IMAGE_TAG
+      IMAGE_TAG: $GHCR_REGISTER_URL/$GHCR_NAMESPACE/$DOCKER_IMAGE_NAME:DOCKER_IMAGE_TAG
     steps:
       - checkout
       - setup_remote_docker
